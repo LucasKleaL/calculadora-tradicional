@@ -11,48 +11,93 @@ var potenciacao;
 var raizQuadrada;
 var porcentagem;
 
-var valor1 = 0;
-var valor2 = 0;
+var valor1;
+var valor2;
 var valorOperacao;
-
-var stringOperacao = 0000000;
-
-
-
 
 
 $("#resultado").click(function(){
 
-    //loop que busca o valor 1 e valor 2 dentro da string do visor
+    var vetorOperacao = stringVisor.split(" "); //reparte a string inserida em um array
 
-    for (var i; i <= stringVisor.length; i++){
+    valor1 = parseFloat(vetorOperacao[0]); //atribui a variavel valor1 um com a posicao 0 do array, cada posicao acaba a cada espaco em branco
+    operacao = vetorOperacao[1]; //atribui a variavel operacao com a posicao 1 do array
+    valor2 = parseFloat(vetorOperacao[2]); //atribui a variavel valor2 um com a posicao 2 do array
 
-        if((stringVisor[i]) == (0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9)){
+    $("#visor").val(""); //deixa o visor em branco
 
-            valor1 += stringVisor[i];
-        
-        }
-        else if((stringVisor[i]) === ("+" || "-" || "*" || "/" || "//" || "%" || "^")){
+    //verifica qual operacao esta sendo solicitada
+    if (operacao === "+"){
 
-            valorOperacao = stringVisor[i];
+        soma = valor1 + valor2;
 
-        }
-
-        
+        $("#visor").val(soma);
     }
+    else if (operacao === "-"){
+
+        subtracao = valor1 - valor2;
+
+        $("#visor").val(subtracao);
+    }
+    else if (operacao ==="x"){
+
+        multiplicacao = valor1 * valor2;
+
+        $("#visor").val(multiplicacao);
+    }
+    else if (operacao === "/"){
+
+        divisao = valor1 / valor2;
+
+        $("#visor").val(divisao);
+    }
+    else if (operacao === "%"){
+
+        
+
+    }
+    else if (operacao === "^"){
+
+        potenciacao = valor1 ** valor2;
+
+        $("#visor").val(potenciacao);
+    }
+    else if (operacao === "//"){
+
+        restoDivisao = valor1 % valor2;
+
+        $("#visor").val(restoDivisao);
+
+    }
+    else if (operacao === "√"){
+
+        var numero = valor1;
+        var divisor = valor2, dividido = 0;
+        for (var  i = 0; i < numero; i++) {
+            dividido = numero / divisor;
+            divisor = (dividido + divisor) / 2;
+        }
+
+        raizQuadrada = divisor
+
+        $("#visor").val(raizQuadrada);
+    }
+    
+});
+
+
+
+
+
+
+
+//botoes de opcoes da calculadora
+
+$("#limpaVisor").click(function(){
 
     $("#visor").val("");
-    $("#visor").val(valor1);
-        
-})
 
-
-
-
-
-
-
-
+});
 
 
 //botoes de numeros/caracteres
