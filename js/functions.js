@@ -24,6 +24,7 @@ $("#resultado").click(function(){
     operacao = vetorOperacao[1]; //atribui a variavel operacao com a posicao 1 do array
     valor2 = parseFloat(vetorOperacao[2]); //atribui a variavel valor2 um com a posicao 2 do array
 
+    $(stringVisor).val("");
     $("#visor").val(""); //deixa o visor em branco
 
     //verifica qual operacao esta sendo solicitada
@@ -96,6 +97,7 @@ $("#resultado").click(function(){
 $("#limpaVisor").click(function(){
 
     $("#visor").val("");
+    $(stringVisor).val("");
 
 });
 
