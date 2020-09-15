@@ -13,16 +13,20 @@ var porcentagem;
 
 var valor1;
 var valor2;
-var valorOperacao;
 
 
 $("#resultado").click(function(){
 
-    var vetorOperacao = stringVisor.split(" "); //reparte a string inserida em um array
+    var vetorStringBruta = stringVisor //separa a string que está sendo exibida no visor e a string que ficara armazenada na memoria
+    var vetorOperacao = vetorStringBruta.split(" "); //reparte a string inserida em um array
 
     valor1 = parseFloat(vetorOperacao[0]); //atribui a variavel valor1 um com a posicao 0 do array, cada posicao acaba a cada espaco em branco
     operacao = vetorOperacao[1]; //atribui a variavel operacao com a posicao 1 do array
     valor2 = parseFloat(vetorOperacao[2]); //atribui a variavel valor2 um com a posicao 2 do array
+
+    if(vetorOperacao[1] === "**"){
+        operacao = "2"
+    }
 
     $(stringVisor).val("");
     $("#visor").val(""); //deixa o visor em branco
@@ -57,9 +61,9 @@ $("#resultado").click(function(){
         
 
     }
-    else if (operacao === "^"){
+    else if (operacao === "2"){
 
-        potenciacao = valor1 ** valor2;
+        potenciacao = Math.pow(valor1, valor2);
 
         $("#visor").val(potenciacao);
     }
@@ -83,6 +87,10 @@ $("#resultado").click(function(){
 
         $("#visor").val(raizQuadrada);
     }
+
+    $(valor1).val("");
+    $(valor2).val("");
+    $(operacao).val("");
     
 });
 
@@ -92,14 +100,7 @@ $("#resultado").click(function(){
 
 
 
-//botoes de opcoes da calculadora
 
-$("#limpaVisor").click(function(){
-
-    $("#visor").val("");
-    $(stringVisor).val("");
-
-});
 
 
 //botoes de numeros/caracteres
@@ -269,7 +270,7 @@ $("#porcentagem").click(function(){
 
 $("#potenciacao").click(function(){
 
-    stringVisor += ' ^ '
+    stringVisor += ' ** '
 
     $("#visor").val(stringVisor);
 
@@ -292,6 +293,14 @@ $("#raizQuadrada").click(function(){
 });
 
 
+//botoes de opcoes da calculadora
+
+$("#limpaVisor").click(function(){
+
+    $("#visor").val("");
+    stringVisor = ""
+
+});
 
 
 
