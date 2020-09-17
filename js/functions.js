@@ -1,8 +1,11 @@
 $(document).ready(function(){
 
 
+//strings utilizadas para representar a expressão
 var stringVisor = "";
 var stringBruta = "";
+
+//valores dos resultados das operações.
 var soma;
 var subtracao;
 var divisao;
@@ -12,19 +15,30 @@ var potenciacao;
 var raizQuadrada;
 var porcentagem;
 
+//valores para operação
 var valor1;
 var operacao;
 var valor2;
 var operacao2;
 
+//valores armazenados na memória da calculadora.
+var resultadoOperacaoAnterior;
+var guardadoNaMemoria;
 
-//botao de resultado. Responsável por verificar quais operações foram solicitadas e acioná-las.
+//valores resultantes de operações realizadas com valores armazenados na memória.
+var somaMemoria;
+var subtracaoMemoria;
+var multiplicacaoMemoria;
+var divisaoMemoria;
+
+
+
+//botao de RESULTADO. Responsável por verificar quais operações foram solicitadas e acioná-las.
 $("#resultado").click(function(){
 
     stringBruta = stringVisor //separa a string que está sendo exibida no visor e a string que ficará armazenada na memoria
     var vetorOperacao = stringBruta.split(" "); //reparte a string inserida em um array
 
-    alert(vetorOperacao)
 
     stringVisor = "" //deixa a string que armazena a expressao do visor em branco
     $("#visor").val(""); //deixa o visor em branco
@@ -45,7 +59,7 @@ $("#resultado").click(function(){
         operacao = "pow"
     }
 
-    if(vetorOperacao[3] === "%"){ //verifica se a operação é de porcentagem; se for substitui o identificador da operação pela string "percent"
+    if(vetorOperacao[3] === "%" || vetorOperacao[1] === "%"){ //verifica se a operação é de porcentagem; se for substitui o identificador da operação pela string "percent"
         operacao = "percent"
     }
     if(vetorOperacao[1] === "√"){ //verifica se a operação é de raiz quadrada; se for substitui o identificador da operação pela string "sqrt"
@@ -60,42 +74,48 @@ $("#resultado").click(function(){
         soma = (valor1 + " + " + valor2 + " = " + (valor1 + valor2));
 
         $("#visor").val(soma);
+
+        resultadoOperacaoAnterior = soma; //guarda o valor resultante da soma em uma variável.
     }
     else if (operacao === "-"){
 
         subtracao = (valor1 + " - " + valor2 + " = " + (valor1 - valor2));
 
         $("#visor").val(subtracao);
+
+        resultadoOperacaoAnterior = subtracao //guarda o valor resultante da ssubtração em uma variável.
     }
     else if (operacao ==="x"){
 
         multiplicacao = (valor1 + " x " + valor2 + " = " + (valor1 * valor2));
 
         $("#visor").val(multiplicacao);
+
+        resultadoOperacaoAnterior = multiplicacao //guarda o valor resultante da multiplicação em uma variável.
     }
     else if (operacao === "/"){
 
         divisao = (valor1 + " ÷ " + valor2 + " = " + (valor1 / valor2));
 
         $("#visor").val(divisao);
+
+        resultadoOperacaoAnterior = divisao //guarda o valor resultante da divisão em uma variável.
     }
-    else if (operacao2 === "percent"){
+    else if (operacao === "percent"){
 
-        if(operacao === "+"){
+            porcentagem = ((valor1 / 100) * valor2)
 
-            porcentagem = parseFloat((valor1 * valor2) / 100);
+            $("#visor").val(porcentagem)
 
-            var porcentagemSoma = parseFloat(valor1 + porcentagem);
-
-            $("#visor").val(porcentagemSoma);
-        }
-
+            resultadoOperacaoAnterior = porcentagem //guarda o valor resultante da porcentagem em uma variável.
     }
     else if (operacao === "pow"){
 
         potenciacao = (valor1 + "^" + valor2 + " = " + Math.pow(valor1, valor2));
 
         $("#visor").val(potenciacao);
+
+        resultadoOperacaoAnterior = potenciacao //guarda o valor resultante da potenciação em uma variável.
     }
     else if (operacao === "//"){
 
@@ -103,13 +123,15 @@ $("#resultado").click(function(){
 
         $("#visor").val(restoDivisao);
 
+        resultadoOperacaoAnterior = restoDivisao //guarda o valor resultante do resto da divisão em uma variável.
     }
     else if (operacao === "sqrt"){
         
         raizQuadrada = ("√" + valor2 + " = " + Math.sqrt(valor2));
 
         $("#visor").val(raizQuadrada);
-        
+
+        resultadoOperacaoAnterior = raizQuadrada //guarda o valor resultante da raiz quadrada em uma variável.
     }
 
     $(valor1).val("");
@@ -320,11 +342,64 @@ $("#raizQuadrada").click(function(){
 
 //botoes de opcoes da calculadora
 
-$("#limpaVisor").click(function(){
+$("#limpaVisor").click(function(){ //botao "C". Limpa o visor e a string que representa a expressão. 
 
     $("#visor").val("");
     stringVisor = ""
 
+});
+
+$("#limpaMemoria").click(function(){ //limpa o resultado armazenado na memoria da calculadora.
+
+    guardadoNaMemoria = null;
+
+});
+
+$("#guardaValorMemoria").click(function(){ //guarda o valor do resultado da operação anterior na memória da calculadora.
+
+    guardadoNaMemoria = parseFloat(resultadoOperacaoAnterior)
+
+});
+
+$("#somarMemoria").click(function(){ //operação de soma entre o valor armazenado na memoria e o valor inserido no visor.
+
+    var valor1Visor = stringVisor.split();
+
+    somaMemoria = (guardadoNaMemoria + " + " + " = " + (guardadoNaMemoria + parseFloat(valor1Visor)));
+
+    $("#visor").val(somaMemoria)
+
+});
+
+$("#subtrairMemoria").click(function(){ //operação de subtração entre o valor armazenado na memoria e o valor inserido no visor.
+
+    var valor1Visor = stringVisor.split();
+    
+    subtracaoMemoria = (guardadoNaMemoria + " - " + valor1Visor + " = " + (guardadoNaMemoria - parseFloat(valor1Visor)));
+
+    $("#visor").val(subtracaoMemoria)
+
+});
+
+$("#multiplicarMemoria").click(function(){ //operação de multiplicação entre o valor armazenado na memoria e o valor inserido no visor.
+
+    var valor1Visor = stringVisor.split();
+    parseFloat(valor1Visor)
+
+    multiplicacaoMemoria = (guardadoNaMemoria + " x " + valor1Visor + " = " + (guardadoNaMemoria * valor1Visor));
+
+    $("#visor").val(multiplicacaoMemoria)
+
+});
+
+$("#dividirMemoria").click(function(){ //operação de divisão entre o valor armazenado na memoria e o valor inserido no virsor
+
+    var valor1Visor = stringVisor.split();
+    parseFloat(valor1Visor);
+
+    divisaoMemoria = (guardadoNaMemoria + " / " + valor1Visor + " = " + (guardadoNaMemoria / valor1Visor));
+
+    $("#visor").val(divisaoMemoria)
 });
 
 
