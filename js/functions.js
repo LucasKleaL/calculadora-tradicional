@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
 
-var stringVisor = '';
+var stringVisor = "";
+var stringBruta = "";
 var soma;
 var subtracao;
 var divisao;
@@ -12,85 +13,109 @@ var raizQuadrada;
 var porcentagem;
 
 var valor1;
+var operacao;
 var valor2;
+var operacao2;
 
 
+//botao de resultado. Responsável por verificar quais operações foram solicitadas e acioná-las.
 $("#resultado").click(function(){
 
-    var vetorStringBruta = stringVisor //separa a string que está sendo exibida no visor e a string que ficara armazenada na memoria
-    var vetorOperacao = vetorStringBruta.split(" "); //reparte a string inserida em um array
+    stringBruta = stringVisor //separa a string que está sendo exibida no visor e a string que ficará armazenada na memoria
+    var vetorOperacao = stringBruta.split(" "); //reparte a string inserida em um array
+
+    alert(vetorOperacao)
+
+    stringVisor = "" //deixa a string que armazena a expressao do visor em branco
+    $("#visor").val(""); //deixa o visor em branco
+
+
+
 
     valor1 = parseFloat(vetorOperacao[0]); //atribui a variavel valor1 um com a posicao 0 do array, cada posicao acaba a cada espaco em branco
     operacao = vetorOperacao[1]; //atribui a variavel operacao com a posicao 1 do array
     valor2 = parseFloat(vetorOperacao[2]); //atribui a variavel valor2 um com a posicao 2 do array
+    operacao2 = vetorOperacao[3];
+    
 
-    if(vetorOperacao[1] === "**"){
-        operacao = "2"
+
+
+
+    if(vetorOperacao[1] === "**"){ //verifica se a operacao é de potenciacao; se for substitui o identificador da operacao pela string "pow"
+        operacao = "pow"
     }
 
-    $(stringVisor).val("");
-    $("#visor").val(""); //deixa o visor em branco
+    if(vetorOperacao[3] === "%"){ //verifica se a operação é de porcentagem; se for substitui o identificador da operação pela string "percent"
+        operacao = "percent"
+    }
+    if(vetorOperacao[1] === "√"){ //verifica se a operação é de raiz quadrada; se for substitui o identificador da operação pela string "sqrt"
+        operacao ="sqrt"
+    }
+
+
 
     //verifica qual operacao esta sendo solicitada
     if (operacao === "+"){
 
-        soma = valor1 + valor2;
+        soma = (valor1 + " + " + valor2 + " = " + (valor1 + valor2));
 
         $("#visor").val(soma);
     }
     else if (operacao === "-"){
 
-        subtracao = valor1 - valor2;
+        subtracao = (valor1 + " - " + valor2 + " = " + (valor1 - valor2));
 
         $("#visor").val(subtracao);
     }
     else if (operacao ==="x"){
 
-        multiplicacao = valor1 * valor2;
+        multiplicacao = (valor1 + " x " + valor2 + " = " + (valor1 * valor2));
 
         $("#visor").val(multiplicacao);
     }
     else if (operacao === "/"){
 
-        divisao = valor1 / valor2;
+        divisao = (valor1 + " ÷ " + valor2 + " = " + (valor1 / valor2));
 
         $("#visor").val(divisao);
     }
-    else if (operacao === "%"){
+    else if (operacao2 === "percent"){
 
-        
+        if(operacao === "+"){
+
+            porcentagem = parseFloat((valor1 * valor2) / 100);
+
+            var porcentagemSoma = parseFloat(valor1 + porcentagem);
+
+            $("#visor").val(porcentagemSoma);
+        }
 
     }
-    else if (operacao === "2"){
+    else if (operacao === "pow"){
 
-        potenciacao = Math.pow(valor1, valor2);
+        potenciacao = (valor1 + "^" + valor2 + " = " + Math.pow(valor1, valor2));
 
         $("#visor").val(potenciacao);
     }
     else if (operacao === "//"){
 
-        restoDivisao = valor1 % valor2;
+        restoDivisao = (valor1 + " mod " + valor2 + " = " + (valor1 % valor2));
 
         $("#visor").val(restoDivisao);
 
     }
-    else if (operacao === "√"){
-
-        var numero = valor1;
-        var divisor = valor2, dividido = 0;
-        for (var  i = 0; i < numero; i++) {
-            dividido = numero / divisor;
-            divisor = (dividido + divisor) / 2;
-        }
-
-        raizQuadrada = divisor
+    else if (operacao === "sqrt"){
+        
+        raizQuadrada = ("√" + valor2 + " = " + Math.sqrt(valor2));
 
         $("#visor").val(raizQuadrada);
+        
     }
 
     $(valor1).val("");
     $(valor2).val("");
     $(operacao).val("");
+    $(operacao2).val("");
     
 });
 
@@ -270,7 +295,7 @@ $("#porcentagem").click(function(){
 
 $("#potenciacao").click(function(){
 
-    stringVisor += ' ** '
+    stringVisor +=  ' ** '
 
     $("#visor").val(stringVisor);
 
@@ -286,7 +311,7 @@ $("#restoDivisao").click(function(){
 
 $("#raizQuadrada").click(function(){
 
-    stringVisor += ' √ '
+    stringVisor = '0' + ' √ '
 
     $("#visor").val(stringVisor);
 
