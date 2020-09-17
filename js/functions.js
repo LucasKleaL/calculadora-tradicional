@@ -14,6 +14,9 @@ var restoDivisao;
 var potenciacao;
 var raizQuadrada;
 var porcentagem;
+var seno;
+var coseno;
+var tangente;
 
 //valores para operação
 var valor1;
@@ -133,6 +136,32 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = raizQuadrada //guarda o valor resultante da raiz quadrada em uma variável.
     }
+    else if (operacao === "sen"){
+
+        seno = ("sen " + valor1 + " = " + (Math.sin(valor1)));
+
+        $("#visor").val(seno);
+
+        resultadoOperacaoAnterior = seno;
+    }
+    else if (operacao === "cos"){
+
+        coseno = ("cos " + valor1 + " = " + (Math.cos(valor1)))
+
+        $("#visor").val(coseno);
+
+        resultadoOperacaoAnterior = coseno;
+    }
+    else if (operacao === "tg"){
+
+        tangente = ("tg " + valor1 + " = " + (Math.tan(valor1)))
+
+        $("#visor").val(tangente);
+
+        resultadoOperacaoAnterior = tangente;
+    }
+
+
 
     $(valor1).val("");
     $(valor2).val("");
@@ -337,6 +366,27 @@ $("#raizQuadrada").click(function(){
 
     $("#visor").val(stringVisor);
 
+});
+
+$("#seno").click(function(){
+    
+    stringVisor += ' sen '
+
+    $("#visor").val(stringVisor);
+});
+
+$("#coseno").click(function(){
+
+    stringVisor += ' cos '
+
+    $("#visor").val(stringVisor)
+});
+
+$("#tangente").click(function(){
+
+    stringVisor += ' tg '
+
+    $("#visor").val(stringVisor)
 });
 
 

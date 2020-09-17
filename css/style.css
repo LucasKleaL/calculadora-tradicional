@@ -12,6 +12,11 @@
     border: 0;
 }
 
+.botao1:hover{
+    background-color: #c68eff;
+    cursor: pointer;
+}
+
 .botao2{
     width: 80px;
     height: 175px;
@@ -20,6 +25,18 @@
     font-family: arial;
     font-size: 30px;
     border: 0;
+}
+
+.botao2:hover{
+    background-color: #c68eff;
+    cursor: pointer;
+}
+
+
+#limpaVisor:hover #divInfoC{
+    background-color: #c68eff;
+    cursor: pointer;
+    opacity: 1;
 }
 
 .visor-area{
