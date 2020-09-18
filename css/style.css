@@ -1,7 +1,9 @@
+/* Class da página html */
 .html-geral1{
     background-color: #AB5EF7;
 }
 
+/* Class dos Botoes do teclado */
 .botao1{
     width: 80px;
     height: 80px;
@@ -33,12 +35,29 @@
 }
 
 
-#limpaVisor:hover #divInfoC{
-    background-color: #c68eff;
-    cursor: pointer;
-    opacity: 1;
+/* Class dos botoes do menu */
+.botao-menu1{
+    width: 150px;
+    height: 50px;
+    background-color: #8430D9;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    font-family: arial;
+    font-size: 15px;
+    margin-top: 15px;
 }
 
+.botao-socialmedia{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #3a0074;
+    border: 0;
+}
+
+
+/* Class do Visor */
 .visor-area{
     width: 630px;
     height: 90px;
@@ -55,6 +74,8 @@
 }
 
 
+
+/* Class das Divs */
 .div1{
     height: 80px;
     text-align: center;
@@ -62,7 +83,7 @@
 }
 
 .div2{
-    height: 150px;
+    height: 175px;
 }
 
 .div3{
@@ -72,11 +93,45 @@
     width: 700px;
 }
 
+.div4{
+    height: 75px;
+}
 
+.div5{
+    height: 200px;
+    background-color: #3a0074;
+}
+
+
+/*Class dos textos*/
 .h1-1{
     color: white;
     font-family: arial;
     font-size: 40px;
     text-align: center;
     padding-top: 20px;
+}
+
+
+.linha-texto1{
+    font-family: arial;
+    color: white;
+    font-size: 35px;
+    padding-top: 25px;
+    font-weight: bold;
+}
+
+.linha-texto2{
+    font-family: arial;
+    color: white;
+    font-size: 25px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+.linha-texto3{
+    font-family: arial;
+    color: white;
+    font-size: 15px;
+    padding-bottom: 5px;
+    font-weight: bold;
 }

@@ -47,16 +47,11 @@ $("#resultado").click(function(){
     $("#visor").val(""); //deixa o visor em branco
 
 
-
-
     valor1 = parseFloat(vetorOperacao[0]); //atribui a variavel valor1 um com a posicao 0 do array, cada posicao acaba a cada espaco em branco
     operacao = vetorOperacao[1]; //atribui a variavel operacao com a posicao 1 do array
     valor2 = parseFloat(vetorOperacao[2]); //atribui a variavel valor2 um com a posicao 2 do array
     operacao2 = vetorOperacao[3];
     
-
-
-
 
     if(vetorOperacao[1] === "**"){ //verifica se a operacao é de potenciacao; se for substitui o identificador da operacao pela string "pow"
         operacao = "pow"
@@ -72,7 +67,7 @@ $("#resultado").click(function(){
 
 
     //verifica qual operacao esta sendo solicitada
-    if (operacao === "+"){
+    if (operacao === "+"){ //operação de soma (adição)
 
         soma = (valor1 + " + " + valor2 + " = " + (valor1 + valor2));
 
@@ -80,7 +75,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = soma; //guarda o valor resultante da soma em uma variável.
     }
-    else if (operacao === "-"){
+    else if (operacao === "-"){ //operação de subtração
 
         subtracao = (valor1 + " - " + valor2 + " = " + (valor1 - valor2));
 
@@ -88,7 +83,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = subtracao //guarda o valor resultante da ssubtração em uma variável.
     }
-    else if (operacao ==="x"){
+    else if (operacao ==="x"){ //operação de multiplicação
 
         multiplicacao = (valor1 + " x " + valor2 + " = " + (valor1 * valor2));
 
@@ -96,7 +91,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = multiplicacao //guarda o valor resultante da multiplicação em uma variável.
     }
-    else if (operacao === "/"){
+    else if (operacao === "/"){ //operação de divisão
 
         divisao = (valor1 + " ÷ " + valor2 + " = " + (valor1 / valor2));
 
@@ -104,7 +99,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = divisao //guarda o valor resultante da divisão em uma variável.
     }
-    else if (operacao === "percent"){
+    else if (operacao === "percent"){ //operação de porcentagem
 
             porcentagem = ((valor1 / 100) * valor2)
 
@@ -112,7 +107,7 @@ $("#resultado").click(function(){
 
             resultadoOperacaoAnterior = porcentagem //guarda o valor resultante da porcentagem em uma variável.
     }
-    else if (operacao === "pow"){
+    else if (operacao === "pow"){ //operação de potencia
 
         potenciacao = (valor1 + "^" + valor2 + " = " + Math.pow(valor1, valor2));
 
@@ -120,7 +115,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = potenciacao //guarda o valor resultante da potenciação em uma variável.
     }
-    else if (operacao === "//"){
+    else if (operacao === "//"){ //operação de resto de divisão
 
         restoDivisao = (valor1 + " mod " + valor2 + " = " + (valor1 % valor2));
 
@@ -128,7 +123,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = restoDivisao //guarda o valor resultante do resto da divisão em uma variável.
     }
-    else if (operacao === "sqrt"){
+    else if (operacao === "sqrt"){ //operação de raiz quadrada
         
         raizQuadrada = ("√" + valor2 + " = " + Math.sqrt(valor2));
 
@@ -136,7 +131,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = raizQuadrada //guarda o valor resultante da raiz quadrada em uma variável.
     }
-    else if (operacao === "sen"){
+    else if (operacao === "sen"){ //operação de seno
 
         seno = ("sen " + valor1 + " = " + (Math.sin(valor1)));
 
@@ -144,7 +139,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = seno;
     }
-    else if (operacao === "cos"){
+    else if (operacao === "cos"){ //operação de cosceno
 
         coseno = ("cos " + valor1 + " = " + (Math.cos(valor1)))
 
@@ -152,7 +147,7 @@ $("#resultado").click(function(){
 
         resultadoOperacaoAnterior = coseno;
     }
-    else if (operacao === "tg"){
+    else if (operacao === "tg"){ //operação de tangente 
 
         tangente = ("tg " + valor1 + " = " + (Math.tan(valor1)))
 
@@ -162,20 +157,12 @@ $("#resultado").click(function(){
     }
 
 
-
     $(valor1).val("");
     $(valor2).val("");
     $(operacao).val("");
     $(operacao2).val("");
     
 });
-
-
-
-
-
-
-
 
 
 
